@@ -4,4 +4,5 @@ result = 0
 for coin in coins:
     result += N // coin
     N %= coin
+
 print(result)
