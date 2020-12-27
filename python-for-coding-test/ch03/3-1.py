@@ -1,7 +1,7 @@
 N = int(input(">> "))
 coins = [500, 100, 50, 10]
-answer = 0
+result = 0
 for coin in coins:
-    answer += N // coin
+    result += N // coin
     N %= coin
-print(answer)
+print(result)
