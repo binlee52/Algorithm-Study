@@ -62,6 +62,3 @@ while True:
 
 
 print(result)
-
-
-
