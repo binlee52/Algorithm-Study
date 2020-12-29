@@ -1,5 +1,7 @@
 n = int(input())
 k = list(map(int, input().split()))
+
+# init DP table
 d = [0] * 100
 
 # Dynamic Programming(Bottom Up)
