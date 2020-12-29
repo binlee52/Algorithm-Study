@@ -1,4 +1,4 @@
-# 이진 탐색 코드(재귀함수)
+# 이진 탐색 코드(반복문)
 def binary_search(array, target, start, end):
     while start <= end:
         mid = (start + end) // 2
