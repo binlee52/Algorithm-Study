@@ -1,8 +1,10 @@
-N = int(input(">> "))
+# 3-1
 coins = [500, 100, 50, 10]
-result = 0
-for coin in coins:
-    result += N // coin
-    N %= coin
+n = int(input())
+answer = 0
 
-print(result)
+for coin in coins:
+    answer += n // coin
+    n = n % coin
+
+print(answer)

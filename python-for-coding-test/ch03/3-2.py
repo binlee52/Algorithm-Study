@@ -1,7 +1,8 @@
-n, m, k = map(int, input('n, m, k >> ').split())
-data = list(map(int, input('data >> ').split()))
+# 3-2
+n, m, k = map(int, input().split())
+data = list(map(int, input().split()))
+data.sort(reverse=True)
+first, second = data[0], data[1]
+answer = (first * k + second) * (m // (k+1)) + (m % (k+1)) * first
 
-data.sort()
-result = (k*data[-1]+data[-2])*(m//(k+1))+data[-1]*(m%(k+1))
-
-print(result)
+print(answer)
