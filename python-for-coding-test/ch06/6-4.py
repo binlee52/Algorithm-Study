@@ -3,22 +3,34 @@
 array = [7, 5, 9, 0, 3, 1, 6, 2, 4, 8]
 
 
-def quick_sort(array):
-    # 리스트가 하나 이하의 원소만을 담고 있다면 종료
-    if len(array) <= 1:
-        return array
+def quick_sort(array, start, end):
+    # 원소가 1개인 경우, 종료
+    if start >= end:
+        return
 
-    # pivot
-    pivot = array[0]
+    pivot = start       # pivot
+    left = start + 1    # 시작
+    right = end         # 끝
+    while left <= right:
+        # 피벗보다 큰 데이터를 찾을 때까지 반복
+        while left <= end and array[left] <= array[pivot]:
+            left += 1
 
-    # pivot을 제외한 list
-    tail = array[1:]
+        # 피벗보다 작은 데이터를 찾을 때까지 반복
+        while right > start and array[right] >= array[pivot]:
+            right -= 1
 
-    left_side = [x for x in tail if x <= pivot]
-    right_side = [x for x in tail if x > pivot]
+        # 엇갈렸을 경우
+        if left > right:
+            array[right], array[pivot] = array[pivot], array[right]
+        # 엇갈리지 않았을 경우
+        else:
+            array[left], array[right] = array[right], array[left]
 
-    # 분할 이후 왼쪽 부분과 오른쪽 부분에 대한 퀵 정렬을 각각 실행
-    return quick_sort(left_side) + [pivot] + quick_sort(right_side)
+    # 분할 이후 왼쪽 부분과 오른쪽 부분에서 각각 정렬 수행
+    quick_sort(array, start, right - 1)
+    quick_sort(array, right + 1, end)
 
 
-print(quick_sort(array))
+quick_sort(array, 0, len(array) - 1)
+print(array)

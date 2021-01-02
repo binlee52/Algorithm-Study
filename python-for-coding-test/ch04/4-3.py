@@ -1,14 +1,16 @@
-steps = [(2, 1), (2, -1), (-2, 1), (-2, -1), (1, 2), (1, -2), (-1, 2), (-1, -2)]
-row = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
-col = ['1', '2', '3', '4', '5', '6', '7', '8']
+row = ['1', '2', '3', '4', '5', '6', '7', '8']
+col = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
 
-input_data = input()
-x = row.index(input_data[0])
-y = col.index(input_data[1])
-result = 0
+dx = [2, 2, -2, -2, 1, 1, -1, -1]
+dy = [1, -1, 1, -1, 2, -2, 2, -2]
 
-for step in steps:
-    if 0 <= x + step[0] < 8 and 0 <= y + step[1] < 8:
-        result += 1
-
-print(result)
+y, x = list(input())
+x = row.index(x)
+y = col.index(y)
+answer = 0
+for i in range(8):
+    nx = x + dx[i]
+    ny = y + dy[i]
+    if 0 <= nx < 8 and 0 <= ny < 8:
+        answer += 1
+print(answer)

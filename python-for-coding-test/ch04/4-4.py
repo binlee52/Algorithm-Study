@@ -5,7 +5,6 @@ x, y, direction = map(int, input().split())
 dx = [-1, 0, 1, 0]
 dy = [0, 1, 0, -1]
 
-
 # 왼쪽으로 회전
 def rotate_left():
     global direction
@@ -36,7 +35,7 @@ while True:
     ny = y + dy[direction]
 
     # 정면에 가보지 않은 칸이 존재하고, 육지인 경우
-    if visited[nx][ny] == 0 and array[nx][ny] == 0:
+    if visited[nx][ny] == 0:
         x, y = nx, ny
         visited[nx][ny] = 1
         result += 1
@@ -62,3 +61,5 @@ while True:
 
 
 print(result)
+
+
