@@ -14,5 +14,3 @@ for target in x:
         print("yes", end=' ')
     else:
         print("no", end=' ')
-
-

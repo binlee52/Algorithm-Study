@@ -16,8 +16,9 @@ n, target = map(int, input().split())
 array = list(map(int, input().split()))
 array.sort()
 result = binary_search(array, target, 0, len(array)-1)
-
 if result:
     print(result + 1)
 else:
     print("{}이 존재하지 않습니다.".format(target))
+
+
