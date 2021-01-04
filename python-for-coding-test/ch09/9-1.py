@@ -26,8 +26,10 @@ def get_smallest_node():
 def dijkstra(start):
     distance[start] = 0
     visited[start] = True
+    # 거리 초기화
     for j in graph[start]:
         distance[j[0]] = j[1]
+    # 다익스트라 알고리즘 수행
     for i in range(n-1):
         now = get_smallest_node()
         visited[now] = True
