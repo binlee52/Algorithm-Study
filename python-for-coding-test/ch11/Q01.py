@@ -1,13 +1,16 @@
 n = int(input())
 x = list(map(int, input().split()))
-x.sort(reverse=True)
+
+x.sort()
 result = 0
-idx = 0
+temp = 0
+
 for i in x:
-    if idx == 0:
-        idx = i
-    idx -= 1
-    if idx == 0:
+    if temp == 0:
+        temp = i
+    else:
+        temp -= 1
+    if temp == 0:
         result += 1
 
 print(result)
