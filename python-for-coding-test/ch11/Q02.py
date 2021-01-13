@@ -1,6 +1,6 @@
 nums = input()
-
 result = int(nums[0])
+
 for num in nums[1:]:
     temp_1 = result + int(num)
     temp_2 = result * int(num)
