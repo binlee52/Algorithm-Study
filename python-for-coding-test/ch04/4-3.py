@@ -5,8 +5,8 @@ dx = [2, 2, -2, -2, 1, 1, -1, -1]
 dy = [1, -1, 1, -1, 2, -2, 2, -2]
 
 y, x = list(input())
-x = row.index(x)
 y = col.index(y)
+x = row.index(x)
 answer = 0
 for i in range(8):
     nx = x + dx[i]
@@ -14,3 +14,5 @@ for i in range(8):
     if 0 <= nx < 8 and 0 <= ny < 8:
         answer += 1
 print(answer)
+
+
