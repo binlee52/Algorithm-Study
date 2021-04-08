@@ -8,10 +8,7 @@ dy = [0, 1, 0, -1]
 # 왼쪽으로 회전
 def rotate_left():
     global direction
-    if direction == 0:
-        direction = 3
-    else:
-        direction -= 1
+    direction = (direction - 1) % 4
 
 
 array = []      # 지도
