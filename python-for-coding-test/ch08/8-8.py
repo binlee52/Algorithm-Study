@@ -1,7 +1,7 @@
 n, m = map(int, input().split())
 INF = int(1e9)
 array = []
-d = [INF] * (100000+1)
+d = [INF] * (10000+1)
 
 for i in range(n):
     array.append(int(input()))
