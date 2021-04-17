@@ -20,15 +20,11 @@ v1, v2 = map(int, input().split())
 
 
 # 최종 출발지 : 1번 정점, 도착지 : N번 정점
-distance_sv1 = [INF] * (N+1)
-distance_sv2 = [INF] * (N+1)
-distance_v1N = [INF] * (N+1)
-distance_v2N = [INF] * (N+1)
-distance_v1v2 = [INF] * (N+1)
-distance_v2v1 = [INF] * (N+1)
-
-
-def dijkstra(distance, start, end):
+def dijkstra(start, end):
+    # 이동거리 리스트
+    distance = [INF] * (N+1)
+    # 시작점 까지의 거리는 항상 0이다.
+    distance[start] = 0
     q = []
     # (비용, 도착지)
     heapq.heappush(q, (0, start))
@@ -43,9 +39,12 @@ def dijkstra(distance, start, end):
             if cost < distance[i[1]]:
                 distance[i[1]] = cost
                 heapq.heappush(q, (cost, i[1]))
-
     return distance[end]
 
 
-print(min(dijkstra(distance_sv1, 1, v1) + dijkstra(distance_v1v2, v1, v2) + dijkstra(distance_v2N, v2, N),
-          dijkstra(distance_sv2, 1, v2) + dijkstra(distance_v2v1, v2, v1) + dijkstra(distance_v1N, v1, N)))
+# 이동거리
+path1 = dijkstra(1, v1) + dijkstra(v1, v2) + dijkstra(v2, N)
+path2 = dijkstra(1, v2) + dijkstra(v2, v1) + dijkstra(v1, N)
+answer = min(path1, path2)
+
+print(answer if answer < INF else -1)
