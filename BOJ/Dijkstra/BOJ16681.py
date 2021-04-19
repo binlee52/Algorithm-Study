@@ -2,13 +2,14 @@ import heapq
 import sys
 
 input = sys.stdin.readline
-INF = int(1e9)
+# 도시의 개수(100,000) * 경로의 최대길이(100,000) = 1e12
+INF = int(1e13)
 
 # N : 지점, M : 경로, D : 체력 소모량, E : 성취감 획득량
 N, M, D, E = map(int, input().split())
 
 graph = [[] for _ in range(N+1)]
-height = [1] + list(map(int, input().split()))
+height = [None] + list(map(int, input().split()))
 
 for _ in range(M):
     # a <=> b : n
