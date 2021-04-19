@@ -48,25 +48,7 @@ lst = []
 # 거쳐가는 지점 2~N-1 까지
 for i in range(2, N):
     # # 1과 N에서 모두 갈 수 있는 지점 i를 구한다.
-    if INF not in (up_distance[i], down_distance[i]):
-        move = up_distance[i] + down_distance[i]
-        lst.append(height[i] * E - move*D)
+    if up_distance[i] != INF and down_distance[i] != INF:
+        lst.append(height[i] * E - (up_distance[i] + down_distance[i]) * D)
 
-if lst:
-    print(max(lst))
-else:
-    print("Impossible")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+print(max(lst) if lst else "Impossible")
