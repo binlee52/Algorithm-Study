@@ -1,33 +1,31 @@
-def find_parent(graph, x):
-    if graph[x] != x:
-        graph[x] = find_parent(graph, graph[x])
-    return graph[x]
+def find_parent(parent, x):
+    if parent[x] != x:
+        parent[x] = find_parent(parent, parent[x])
+    return parent[x]
 
 
-def check_parent(graph, x, y):
-    if find_parent(graph, x) == find_parent(graph, y):
-        return True
-    return False
-
-
-def union_parent(graph, x, y):
-    x = find_parent(graph, x)
-    y = find_parent(graph, y)
-    if x > y:
-        graph[x] = y
+def union_parent(parent, a, b):
+    a = find_parent(parent, a)
+    b = find_parent(parent, b)
+    if a < b:
+        parent[b] = a
     else:
-        graph[y] = x
+        parent[a] = b
 
 
+# 0 ~ n 까지 n + 1개의 팀 존재
+# n : 팀, m : 연산의 개수
 n, m = map(int, input().split())
-graph = [i for i in range(n+1)]
+parent = [i for i in range(n+1)]
 for _ in range(m):
-    mod, a, b = map(int, input().split())
-    if mod == 0:
-        union_parent(graph, a, b)
-    elif mod == 1:
-        if check_parent(graph, a, b):
+    opt, a, b = map(int, input().split())
+    # 같은 팀 여부 확인
+    if opt:
+        a = find_parent(parent, a)
+        b = find_parent(parent, b)
+        if a == b:
             print("YES")
         else:
             print("NO")
-    print(graph)
+    else:
+        union_parent(parent, a, b)
