@@ -7,73 +7,34 @@ N, C = map(int, input().split())
 # 박스 정보의 개수
 M = int(input())
 
-graph = [[0 for _ in range(N+1)] for _ in range(N+1)]
+deliver = []
 
 for _ in range(M):
     # a : 출발지, b : 도착지, c: 배송량
     a, b, c = map(int, input().split())
-    graph[a][b] += c
+    deliver.append((a, b, c))
 
+# 도착지를 기준으로 정렬, 도착지가 같다면 출발지를 기준으로 정렬
+deliver.sort(key=lambda x: (x[1], x[0]))
+capacity = [C] * (N+1)
 total = 0
-curr = [0] * (N+1)
 
-for dist in range(1, N):
-    for now in range(1, N):
-        nxt = now + dist
+for d in deliver:
+    # s : 출발지, t : 도착지, t : 배송량
+    s, t, cost = d
+    # s~t 사이에서 보낼 수 있는 최대 배송량을 구하기 위해선
+    # 남은 배송량 중 최솟값을 구해야한다.
+    max_cost = min(capacity[s:t])
 
-        if nxt <= N:
-            flag = True
-            min_weight = int(1e9)
-            target = now
-            for j in range(now, nxt):
-                if curr[j] + graph[now][j] >= c:
-                    flag = False
-                    if min_weight >= C - curr[j]:
-                        min_weight = C - curr[j]
-                        target = j
-
-            if flag:
-                total += graph[now][nxt]
-                for t in range(now, nxt):
-                    curr[t] += graph[now][nxt]
-            # 초과할 때
-            else:
-                total += min_weight
-                for t in range(now, nxt):
-                    curr[t] += min_weight
-
-
-#
-# for dist in range(1, N):
-#     for now, x in enumerate(graph):
-#         for i in x:
-#             # 출발지와 목적지의 거리가 dist만큼 차이날 때
-#             if now + dist == i[0]:
-#                 flag = True
-#                 min_weight = int(1e9)
-#                 target = now
-#                 for j in range(now, i[0]):
-#                     # 전부 다 실을 수 없다면
-#                     if curr[j] + i[1] > C:
-#                         flag = False
-#                         if min_weight >= C - curr[j]:
-#                             min_weight = C - curr[j]
-#                             target = j
-#
-#                 if flag:
-#                     total += i[1]
-#                     for t in range(now, i[0]):
-#                         curr[t] += i[1]
-#                 # 초과할 때
-#                 else:
-#                     total += min_weight
-#                     for t in range(now, target+1):
-#                         curr[t] += min_weight
-#                 del i
-
+    # cost를 전부 다 배송할 수 있다면
+    if cost <= max_cost:
+        for i in range(s, t):
+            capacity[i] -= cost
+        total += cost
+    # 일부만 배송 가능하거나 배송 불가능하다면
+    else:
+        total += max_cost
+        for i in range(s, t):
+            capacity[i] -= max_cost
 
 print(total)
-
-
-
-
