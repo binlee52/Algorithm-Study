@@ -1,3 +1,9 @@
+import sys
+
+input = sys.stdin.readline
+sys.setrecursionlimit(10**6)
+
+
 def find_parent(parent, x):
     if parent[x] != x:
         parent[x] = find_parent(parent, parent[x])
@@ -5,7 +11,7 @@ def find_parent(parent, x):
 
 
 def union_parent(parent, a, b):
-    a = find_parent(parent , a)
+    a = find_parent(parent, a)
     b = find_parent(parent, b)
     if a < b:
         parent[b] = a
@@ -14,7 +20,7 @@ def union_parent(parent, a, b):
 
 
 N, M = map(int, input().split())
-parent = [i for i in range(M+1)]
+parent = [i for i in range(N+1)]
 graph = []
 
 for _ in range(M):
