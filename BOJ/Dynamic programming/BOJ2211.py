@@ -31,7 +31,6 @@ def dijkstra():
                 heapq.heappush(q, (cost, i[1]))
     return path
 
-
 path = dijkstra()
 print(N-1)
 for i in range(2, N+1):
