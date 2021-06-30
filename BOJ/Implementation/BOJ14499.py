@@ -16,6 +16,7 @@ def is_left_rotatable(n):
         return True
     return False
 
+
 # 현재 톱니바퀴의 오른쪽 톱니바퀴가 회전할 수 있는가?
 def is_right_rotatable(n):
     if n >= 4:
