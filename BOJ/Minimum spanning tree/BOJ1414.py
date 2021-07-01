@@ -26,14 +26,15 @@ edges = []
 answer = 0
 
 
-for i in range(1, N + 1):
+for i in range(N):
     data = list(map(alphabet.get, list(input().rstrip())))
     answer += sum(data)
-    for j in range(1, N+1):
-        if data[j-1] != -1:
-            edges.append((data[j-1], i, j))
+    for j in range(N):
+        if data[j] != -1:
+            if i != j:
+                edges.append((data[j], i, j))
 
-parent = [i for i in range(N+1)]
+parent = [i for i in range(N)]
 edges.sort(key=lambda i: i[0])
 
 cnt = 1
@@ -43,7 +44,6 @@ for cost, src, dst in edges:
         answer -= cost
         cnt += 1
 
-parent = [find_parent(parent, x) for x in parent]
 if cnt != N:
     print(-1)
 else:
