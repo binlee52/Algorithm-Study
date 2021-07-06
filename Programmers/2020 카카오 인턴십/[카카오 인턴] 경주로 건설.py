@@ -1,14 +1,13 @@
-import heapq
 import sys
 from collections import deque
 
 
 def solution(board):
-    answer = min(dijkstra(board, 1), dijkstra(board, 2))
+    answer = min(bfs(board, 1), bfs(board, 2))
     return answer
 
 
-def dijkstra(graph, d):
+def bfs(graph, d):
     N = len(graph)
     INF = sys.maxsize
     distance = [[INF] * N for _ in range(N)]
